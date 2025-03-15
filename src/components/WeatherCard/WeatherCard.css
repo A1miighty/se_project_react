@@ -1,18 +1,31 @@
-.weather-card__image {
-  width: 100%;
+.weather-card {
+  position: relative;
+  display: flex;
   height: 80px;
-  object-fit: cover;
-  object-position: right top;
-  overflow: hidden;
   border-radius: 12px;
+  overflow: hidden;
 }
+
 .weather-card__temp {
-  position: absolute;
-  color: white;
-  font-family: "CabinetGrotesk";
-  font-weight: 700;
   font-size: 36px;
   line-height: 40px;
-  letter-spacing: 0%;
-  margin: 20px auto 20px 16px;
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  color: #ffff;
+  margin: 0;
+}
+
+.weather-card__image {
+  object-fit: contain;
+  width: 100%;
+}
+
+.weather-card__info {
+  position: absolute;
+  top: 22px;
+  width: 69px;
+  height: 40px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 36px;
 }
