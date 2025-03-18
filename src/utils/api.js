@@ -1,10 +1,16 @@
 const baseURL = "http://localhost:3001";
 
 function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
+  return res
+    .text() // Read response as text first
+    .then((text) => {
+      try {
+        return JSON.parse(text); // Try parsing JSON
+      } catch {
+        return Promise.reject(`Invalid JSON response: ${text}`);
+      }
+    })
+    .catch((err) => Promise.reject(`Error: ${err}`));
 }
 
 function request(url, options) {
@@ -22,14 +28,7 @@ function addItem(item) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(item),
-  })
-    .then((res) => res.json())
-    .then((data) => ({
-      _id: data._id,
-      name: data.name,
-      imageUrl: data.imageUrl,
-      weather: data.weather,
-    }));
+  });
 }
 
 function deleteItem(itemId) {

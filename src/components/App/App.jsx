@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -31,6 +30,7 @@ function App() {
   };
 
   const handleCardClick = (card) => {
+    console.log("Card clicked:", card);
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -46,7 +46,6 @@ function App() {
   const handleAddItemModalSubmit = (item) => {
     addItem(item)
       .then((item) => {
-        console.log(item);
         setClothingItems([item, ...clothingItems]);
         closeActiveModal();
       })
@@ -56,9 +55,8 @@ function App() {
   const handleDeleteCard = (cardId) => {
     deleteItem(cardId)
       .then(() => {
-        console.log(cardId);
-        setClothingItems(([item, ...clothingItems]) =>
-          [item, ...clothingItems].filter((item) => item._id !== cardId)
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== cardId)
         );
         closeActiveModal();
       })
@@ -77,7 +75,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
@@ -90,19 +87,17 @@ function App() {
       >
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-
           <Routes>
             <Route
               path="/"
               element={
                 <Main
                   weatherData={weatherData}
-                  handleCardClick={handleCardClick}
+                  handleCardClick={handleCardClick} // Correctly passing down the function
                   clothingItems={clothingItems}
                 />
               }
             />
-
             <Route
               path="/profile"
               element={
@@ -115,7 +110,6 @@ function App() {
               }
             />
           </Routes>
-
           <Footer />
         </div>
         <AddItemModal

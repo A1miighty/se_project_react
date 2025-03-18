@@ -4,7 +4,7 @@ import "./ClothesSection.css";
 function ClothesSection({
   clothingItems,
   weatherData,
-  onCardClick,
+  handleCardClick,
   handleAddClick,
 }) {
   return (
@@ -21,7 +21,7 @@ function ClothesSection({
               <ItemCard
                 key={item._id}
                 item={item}
-                onCardClick={onCardClick} // Pass the onCardClick prop down to ItemCard
+                handleCardClick={handleCardClick} // Pass the handleCardClick prop down to ItemCard
               />
             );
           })}
