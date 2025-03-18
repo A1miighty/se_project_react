@@ -2,7 +2,11 @@ import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
-export default function AddItemModal({ onClose, isOpen, onAddItem }) {
+export default function AddItemModal({
+  onClose,
+  isOpen,
+  onAddItemModalSubmit,
+}) {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
@@ -21,60 +25,58 @@ export default function AddItemModal({ onClose, isOpen, onAddItem }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newItem = { name, imageUrl, weather };
-    console.log("Adding new item:", newItem);
-    onAddItem(newItem); // Pass new item up to parent component
-    setName("");
-    setImageUrl("");
-    setWeather("");
+    onAddItemModalSubmit({ name, imageUrl, weather });
+    React.useEffect(() => {
+      setName("");
+      setImageUrl("");
+      setWeather("");
+    }, [isOpen]);
   };
 
   return (
     <ModalWithForm
-      title="New Garment"
-      name="new-card"
+      titleText="New Garment"
       buttonText="Add Garment"
-      isOpen={isOpen}
+      //activeModal={activeModal}
       onClose={onClose}
+      isOpen={isOpen}
       onSubmit={handleSubmit}
     >
-      <label className="modal__label">
+      <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
           type="text"
-          className="modal__input modal__input_type_card-name"
+          className="modal__input"
           id="name"
           placeholder="Name"
-          required
-          minLength="1"
-          maxLength="30"
-          onChange={handleNameChange} // Use the external handler
-          value={name} // Bind the input to the state
+          //required
+          onChange={handleNameChange}
+          value={name}
         />
       </label>
+
       <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
-          type="text"
+          type="url"
           className="modal__input"
           id="imageUrl"
-          placeholder="Enter Image URL"
-          required
+          placeholder="Image URL"
           onChange={handleImageUrlChange}
           value={imageUrl}
         />
       </label>
       <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend"> Select the weather type:</legend>
+        <legend className="modal__legend">Select the Weather Type</legend>
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           <input
             id="hot"
             type="radio"
-            name="weather type"
+            name="temperature"
             value="hot"
-            className="modal__radio-input"
             onChange={handleWeatherChange}
             checked={weather === "hot"}
+            className="modal__radio-input"
           />{" "}
           Hot
         </label>
@@ -82,11 +84,11 @@ export default function AddItemModal({ onClose, isOpen, onAddItem }) {
           <input
             id="warm"
             type="radio"
-            name="weather type"
+            name="temperature"
             value="warm"
-            className="modal__radio-input"
             onChange={handleWeatherChange}
             checked={weather === "warm"}
+            className="modal__radio-input"
           />{" "}
           Warm
         </label>
@@ -94,11 +96,11 @@ export default function AddItemModal({ onClose, isOpen, onAddItem }) {
           <input
             id="cold"
             type="radio"
-            name="weather type"
+            name="temperature"
             value="cold"
-            className="modal__radio-input"
             onChange={handleWeatherChange}
             checked={weather === "cold"}
+            className="modal__radio-input"
           />{" "}
           Cold
         </label>

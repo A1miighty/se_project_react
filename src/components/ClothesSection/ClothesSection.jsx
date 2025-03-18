@@ -1,30 +1,26 @@
-import "./ClothesSection.css";
+import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
+import "./ClothesSection.css";
 
-function ClothesSection({
-  clothingItems,
-  weatherData,
-  onCardClick,
-  handleAddClick,
-}) {
+function ClothesSection({ handleCardClick, handleActiveModal, clothingItems }) {
   return (
     <div className="clothes-section">
-      <div>
-        <p>Your items</p>
-        <button onClick={handleAddClick}>+ Add New </button>
+      <div className="clothes-content">
+        <p className="clothes-text">Your Items</p>
+        <button className="clothes-button" onClick={handleActiveModal}>
+          +Add New
+        </button>
       </div>
       <ul className="clothes-section__items">
-        {clothingItems
-          // .filter((item) => item.weather === weatherData.type) // Filtering based on weatherData
-          .map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onCardClick={onCardClick} // Pass the onCardClick prop down to ItemCard
-              />
-            );
-          })}
+        {clothingItems?.map((item) => {
+          return (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onCardClick={handleCardClick}
+            />
+          );
+        })}
       </ul>
     </div>
   );

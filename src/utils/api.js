@@ -1,33 +1,41 @@
 const baseURL = "http://localhost:3001";
 
-// Fetch all items (GET /items)
-export const getItems = () => {
-  return fetch(`${baseURL}/items`).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
-};
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+}
 
-// Add a new item (POST /items)
-export const addItem = (name, imageUrl, weather) => {
-  return fetch(`${baseURL}/items`, {
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
+function getItems() {
+  return request(`${baseURL}/items`);
+}
+
+function addItem(item) {
+  return request(`${baseURL}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, imageUrl, weather }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
-};
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(item),
+  })
+    .then((res) => res.json())
+    .then((data) => ({
+      _id: data._id,
+      name: data.name,
+      imageUrl: data.imageUrl,
+      weather: data.weather,
+    }));
+}
 
-// Remove an item (DELETE /items/:id)
-export const removeItem = (id) => {
-  return fetch(`${baseURL}/items/${id}`, {
+function deleteItem(itemId) {
+  return request(`${baseURL}/items/${itemId}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
-};
+  });
+}
 
-// Export all functions
-const api = { getItems, addItem, removeItem };
-export default api;
+export { getItems, addItem, deleteItem };

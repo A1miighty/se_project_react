@@ -6,7 +6,7 @@
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  margin-right: 16px;
+  margin-left: auto;
 }
 
 .toggle-switch__checkbox {
@@ -19,13 +19,13 @@
   height: 28px;
   position: absolute;
   border-radius: 50%;
-  left: 0px;
+  left: 0;
   transition: all 0.3s;
 }
 
 .toggle-switch__text {
-  color: grey;
   position: absolute;
+  color: gray;
   top: 5px;
 }
 
@@ -36,7 +36,6 @@
 .toggle-switch__text_C {
   right: 9px;
 }
-
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
   left: 28px;
 }

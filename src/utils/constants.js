@@ -11,13 +11,13 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "rain",
-    url: new URL("../assets/day/rain.png", import.meta.url).href,
+    condition: "fog",
+    url: new URL("../assets/day/fog.png", import.meta.url).href,
   },
   {
     day: true,
-    condition: "storm",
-    url: new URL("../assets/day/storm.png", import.meta.url).href,
+    condition: "rain",
+    url: new URL("../assets/day/rain.png", import.meta.url).href,
   },
   {
     day: true,
@@ -26,8 +26,8 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "fog",
-    url: new URL("../assets/day/fog.png", import.meta.url).href,
+    condition: "storm",
+    url: new URL("../assets/day/storm.png", import.meta.url).href,
   },
   {
     day: false,
@@ -41,13 +41,13 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "rain",
-    url: new URL("../assets/night/rain.png", import.meta.url).href,
+    condition: "fog",
+    url: new URL("../assets/night/fog.png", import.meta.url).href,
   },
   {
     day: false,
-    condition: "storm",
-    url: new URL("../assets/night/storm.png", import.meta.url).href,
+    condition: "rain",
+    url: new URL("../assets/night/rain.png", import.meta.url).href,
   },
   {
     day: false,
@@ -56,8 +56,8 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "fog",
-    url: new URL("../assets/night/fog.png", import.meta.url).href,
+    condition: "storm",
+    url: new URL("../assets/night/storm.png", import.meta.url).href,
   },
 ];
 

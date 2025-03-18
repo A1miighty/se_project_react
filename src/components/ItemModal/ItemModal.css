@@ -1,69 +1,41 @@
-.modal__footer {
+.modal__image {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  padding: 20px;
+  height: 498px;
+  width: 496px;
+  border-radius: 16px 16px 0 0;
+  margin-left: -28px;
+  margin-top: -28px;
 }
 
 .modal__caption {
-  margin: 0;
+  width: 36px;
+  height: 24px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__footer {
+  position: relative;
 }
 
 .modal__weather {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
   margin: 0;
 }
 
-.modal__opened {
-  display: flex;
-}
-
-/* .modal__content {
-  background-color: #fff;
-  position: relative;
-  box-sizing: border-box;
-  border-radius: 20px;
-  height: 610px;
-  max-width: 496px;
-  width: 100%;
-} */
-
-.modal__content_type_image {
-  max-height: 610px;
-  padding: 0;
-  overflow: hidden;
-}
-
-.modal_type_image {
-}
-
-.modal__delete-button {
-  color: rgba(255, 77, 0, 1);
-  width: 101px;
-  height: 24px;
-  font-size: 16px;
+.modal__delete {
+  position: absolute;
+  margin-left: 297px;
+  top: 2px;
+  right: 2px;
+  border: none;
+  background: transparent;
+  color: #ff4d00;
   font-weight: 700;
+  font-size: 20px;
   line-height: 24px;
-  background-color: transparent;
-  border: none;
-  display: flex;
-  justify-content: right;
-  position: absolute;
-  left: 355px;
-}
-
-.modal__close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  border: none;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  background-image: url("../../assets/X_mark-white.svg");
-  background-repeat: no-repeat;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.modal__close-item {
 }
