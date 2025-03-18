@@ -35,7 +35,7 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleActiveModal = () => {
+  const handleAddClick = () => {
     setActiveModal("add-garment");
   };
 
@@ -84,15 +84,12 @@ function App() {
   }, []);
 
   return (
-    <CurrentTemperatureUnitContext.Provider
-      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-    >
-      <div className="page">
+    <div className="page">
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
         <div className="page__content">
-          <Header
-            handleActiveModal={handleActiveModal}
-            weatherData={weatherData}
-          />
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
 
           <Routes>
             <Route
@@ -112,7 +109,8 @@ function App() {
                 <Profile
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
-                  handleActiveModal={handleActiveModal}
+                  handleAddClick={handleAddClick}
+                  username={"User name"}
                 />
               }
             />
@@ -131,8 +129,8 @@ function App() {
           onClose={closeActiveModal}
           onDelete={handleDeleteCard}
         />
-      </div>
-    </CurrentTemperatureUnitContext.Provider>
+      </CurrentTemperatureUnitContext.Provider>
+    </div>
   );
 }
 

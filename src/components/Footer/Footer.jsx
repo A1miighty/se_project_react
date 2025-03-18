@@ -1,9 +1,12 @@
 import "./Footer.css";
+
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__text">Developed by Rashad Johnson</p>
-      <p className="footer__date">2025</p>
+      <div className="footer__content">
+        <p>Developed by Rashad Johnson</p>
+        <p>{new Date().getFullYear()}</p>
+      </div>
     </footer>
   );
 }

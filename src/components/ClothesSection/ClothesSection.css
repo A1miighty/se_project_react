@@ -1,31 +1,21 @@
 .clothes-section__items {
-  width: 1015px;
-  height: 676px;
   display: flex;
-  flex-direction: row;
+  max-width: 1015px;
   flex-wrap: wrap;
   gap: 21px;
 }
-
-.clothes-content {
+.clothes-section > div {
   display: flex;
-  gap: 20px;
 }
 
-.clothes-text {
-  width: 95px;
-  height: 25px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24.8px;
-}
-
-.clothes-button {
+.clothes-section button {
   border: none;
-  width: 99px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24.8px;
-  opacity: 60%;
+  background-color: transparent;
+  margin-left: 20px;
   cursor: pointer;
+  font-size: 15px;
+}
+.clothes-section p {
+  margin-left: 20px;
+  font-size: 15px;
 }
