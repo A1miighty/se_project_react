@@ -1,19 +1,4 @@
-function checkResponse(res) {
-  return res
-    .text() // Read response as text first
-    .then((text) => {
-      try {
-        return JSON.parse(text); // Try parsing JSON
-      } catch {
-        return Promise.reject(`Invalid JSON response: ${text}`);
-      }
-    })
-    .catch((err) => Promise.reject(`Error: ${err}`));
-}
-
-function request(url, options) {
-  return fetch(url, options).then(checkResponse);
-}
+import { request } from "./api"; // Import the existing request function from api.js
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return request(
