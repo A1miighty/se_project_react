@@ -5,7 +5,7 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 import { Link } from "react-router-dom";
 
-function Header({ handleAddClick, weatherData, username }) {
+function Header({ handleActiveModal, weatherData, username }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -24,7 +24,7 @@ function Header({ handleAddClick, weatherData, username }) {
       <div className="header__nav">
         <ToggleSwitch />
         <button
-          onClick={handleAddClick}
+          onClick={handleActiveModal}
           type="button"
           className="header__button-add"
         >

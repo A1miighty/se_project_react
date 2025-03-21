@@ -32,8 +32,15 @@ function addItem(item) {
 }
 
 function deleteItem(itemId) {
-  return request(`${baseURL}/items/${itemId}`, {
+  const deleteURL = `${baseURL}/items/${itemId}`;
+  console.log("Attempting to delete at URL:", deleteURL);
+  console.log("ItemId received:", itemId);
+  console.log("ItemId type:", typeof itemId); // Add this line
+  return request(deleteURL, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }
 

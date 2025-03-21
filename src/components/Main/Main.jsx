@@ -6,11 +6,14 @@ import { useContext } from "react";
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log("handleCardClick in Main:", handleCardClick);
 
   return (
     <main>
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard
+        weatherData={weatherData}
+        handleCardClick={handleCardClick} // Ensure it's passed correctly
+        clothingItems={clothingItems}
+      />
       <section className="cards">
         <p className="cards__text">
           Today is {weatherData.temp[currentTemperatureUnit]}&deg;
@@ -19,11 +22,11 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
         <ul className="cards__list">
           {clothingItems
             .filter((item) => item.weather === weatherData.type)
-            .map((item) => (
+            .map((item, index) => (
               <ItemCard
-                key={item._id}
+                key={item._id || item.id || index}
                 item={item}
-                handleCardClick={handleCardClick} // Ensure it's passed here
+                handleCardClick={handleCardClick}
               />
             ))}
         </ul>

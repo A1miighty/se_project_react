@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -30,12 +30,12 @@ function App() {
   };
 
   const handleCardClick = (card) => {
-    console.log("Card clicked:", card);
-    setActiveModal("preview");
+    console.log("Selected card:", card); // Add this line
     setSelectedCard(card);
+    setActiveModal("preview");
   };
 
-  const handleAddClick = () => {
+  const handleActiveModal = () => {
     setActiveModal("add-garment");
   };
 
@@ -46,6 +46,7 @@ function App() {
   const handleAddItemModalSubmit = (item) => {
     addItem(item)
       .then((item) => {
+        console.log(item);
         setClothingItems([item, ...clothingItems]);
         closeActiveModal();
       })
@@ -55,6 +56,7 @@ function App() {
   const handleDeleteCard = (cardId) => {
     deleteItem(cardId)
       .then(() => {
+        console.log(cardId);
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== cardId)
         );
@@ -74,42 +76,48 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((data) => {
-        setClothingItems(data);
+      .then((items) => {
+        console.log("Fetched items:", items); // Add this line
+        setClothingItems(items);
       })
       .catch(console.error);
   }, []);
 
   return (
-    <div className="page">
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
+      <div className="page">
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header
+            handleActiveModal={handleActiveModal}
+            weatherData={weatherData}
+          />
+
           <Routes>
             <Route
               path="/"
               element={
                 <Main
                   weatherData={weatherData}
-                  handleCardClick={handleCardClick} // Correctly passing down the function
+                  handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
               }
             />
+
             <Route
               path="/profile"
               element={
                 <Profile
                   clothingItems={clothingItems}
                   handleCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
-                  username={"User name"}
+                  handleActiveModal={handleActiveModal}
                 />
               }
             />
           </Routes>
+
           <Footer />
         </div>
         <AddItemModal
@@ -123,8 +131,8 @@ function App() {
           onClose={closeActiveModal}
           onDelete={handleDeleteCard}
         />
-      </CurrentTemperatureUnitContext.Provider>
-    </div>
+      </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 
