@@ -44,4 +44,4 @@ function deleteItem(itemId) {
   });
 }
 
-export { getItems, addItem, deleteItem };
+export { getItems, addItem, deleteItem, request };

@@ -89,6 +89,12 @@
       "name": "Rashad Johnson",
       "imageUrl": "https://unsplash.com/photos/white-crew-neck-t-shirt-acn5ERAeSb4",
       "weather": "cold"
+    },
+    {
+      "name": "",
+      "imageUrl": "",
+      "weather": "",
+      "id": "V2NkaQW"
     }
   ]
 }

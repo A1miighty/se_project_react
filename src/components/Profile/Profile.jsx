@@ -17,8 +17,7 @@ function Profile({
         <ClothesSection
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
-          handleAddClick={handleAddClick}
-          handleActiveModal={handleActiveModal}
+          handleAddClick={handleActiveModal} // Ensure the correct function is passed
         />
       </section>
     </div>
