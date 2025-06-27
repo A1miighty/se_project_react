@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./header.css";
+import "./Header.css";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link, useLocation } from "react-router-dom";
