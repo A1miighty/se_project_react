@@ -1,33 +1,51 @@
+import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
+import CurrentUserContext from "../../context/CurrentUserContext";
+import PropTypes from "prop-types";
 
-function ClothesSection({
-  clothingItems,
-  weatherData,
-  handleCardClick,
+export default function ClothesSection({
+  handleCardLike,
   handleAddClick,
+  handleCardClick,
+  clothingItems,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  // Filter items to only those owned by the current user
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser?.id || item.owner === currentUser?._id
+  );
+
   return (
     <div className="clothes-section">
-      <div>
-        <p>Your items</p>
-        <button onClick={handleAddClick}>+ Add New </button>
+      <div className="clothes-section__description">
+        <p className="clothes-section__label">Your items</p>
+        <button
+          className="clothes-section__add-btn"
+          type="button"
+          onClick={handleAddClick}
+        >
+          + Add new
+        </button>
       </div>
       <ul className="clothes-section__items">
-        {clothingItems
-          // .filter((item) => item.weather === weatherData.type) // Filtering based on weatherData
-          .map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                handleCardClick={handleCardClick} // Pass the handleCardClick prop down to ItemCard
-              />
-            );
-          })}
+        {userItems.map((item) => (
+          <ItemCard
+            key={item._id || item.id}
+            item={item}
+            handleCardClick={handleCardClick}
+            handleCardLike={handleCardLike}
+          />
+        ))}
       </ul>
     </div>
   );
 }
 
-export default ClothesSection;
+ClothesSection.propTypes = {
+  clothingItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleAddClick: PropTypes.func.isRequired,
+  handleCardClick: PropTypes.func.isRequired,
+  handleCardLike: PropTypes.func.isRequired,
+};

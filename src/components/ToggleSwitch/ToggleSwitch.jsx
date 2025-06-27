@@ -1,32 +1,36 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import "./ToggleSwitch.css";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit";
+import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 
-export default function ToggleSwitch() {
-  const { handleToggleSwitchChange, currentTemperatureUnit } = useContext(
+export const ToggleSwitch = () => {
+  const { handleSwitchChange, currentTemperatureUnit } = useContext(
     CurrentTemperatureUnitContext
   );
 
   return (
-    <label className="toggle-switch">
+    <label className="switch">
       <input
-        onChange={handleToggleSwitchChange}
         type="checkbox"
-        className="toggle-switch__checkbox"
+        className="switch__checkbox"
+        onChange={handleSwitchChange}
       />
-      <span className="toggle-switch__circle"></span>
+      <span className="switch__circle"></span>
       <span
-        style={{ color: `${currentTemperatureUnit === "F" ? "white" : ""}` }}
-        className="toggle-switch__text toggle-switch__text_F"
+        className={`switch__text switch__text_F ${
+          currentTemperatureUnit === "F" ? "switch__text_color_white" : ""
+        }`}
       >
         F
       </span>
       <span
-        style={{ color: `${currentTemperatureUnit === "C" ? "white" : ""}` }}
-        className="toggle-switch__text toggle-switch__text_C"
+        className={`switch__text switch__text_C ${
+          currentTemperatureUnit === "C" ? "switch__text_color_white" : ""
+        }`}
       >
         C
       </span>
     </label>
   );
-}
+};
+
+export default ToggleSwitch;

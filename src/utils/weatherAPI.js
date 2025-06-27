@@ -1,4 +1,4 @@
-import { request } from "./api"; // Import the existing request function from api.js
+import { handleServerResponse } from "./api.js";
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return request(

@@ -1,32 +1,42 @@
-import "./Main.css";
-import WeatherCard from "../WeatherCard/WeatherCard";
+import React, { useContext } from "react";
+import "../Main/Main.css";
+import WeatherCard from "../Weathercard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit";
-import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main(props) {
+  const {
+    weatherData,
+    handleCardClick,
+    clothingItems,
+    handleCardLike,
+    handleCardDelete,
+  } = props;
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  console.log("Main props:", props);
 
   return (
     <main>
-      <WeatherCard
-        weatherData={weatherData}
-        handleCardClick={handleCardClick} // Ensure it's passed correctly
-        clothingItems={clothingItems}
-      />
+      <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.temp[currentTemperatureUnit]}&deg;
-          {currentTemperatureUnit}/ You may want to wear:
+          Today is{" "}
+          {currentTemperatureUnit === "F"
+            ? weatherData.temp.F
+            : weatherData.temp.C}{" "}
+          &deg; {currentTemperatureUnit} / You may want to wear:
         </p>
+
         <ul className="cards__list">
           {clothingItems
             .filter((item) => item.weather === weatherData.type)
-            .map((item, index) => (
+            .map((item, idx) => (
               <ItemCard
-                key={item._id || item.id || index}
+                key={item.id || idx}
                 item={item}
                 handleCardClick={handleCardClick}
+                handleCardLike={handleCardLike}
               />
             ))}
         </ul>

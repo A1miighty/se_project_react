@@ -1,23 +1,37 @@
-import Sidebar from "../Sidebar/Sidebar";
+import React from "react";
+import PropTypes from "prop-types";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import "./Profile.css";
+import "../Profile/Profile.css";
+import Sidebar from "../SideBar/SideBar";
 
 function Profile({
-  handleCardClick,
-  handleActiveModal,
-  clothingItems,
   handleAddClick,
+  handleCardClick,
+  onSelectCard,
+  onAddNewItem,
+  clothingItems,
+  handleCardLike,
+  handleEditProfile,
+  handleSignOut,
+  handleLogin,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <Sidebar />
+        <Sidebar
+          onEditProfile={handleEditProfile}
+          onSignOut={handleSignOut}
+          onLogin={handleLogin}
+        />
       </section>
-      <section className="profile__clothes-section">
+      <section className="profile__closet">
         <ClothesSection
           clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
           handleCardClick={handleCardClick}
-          handleAddClick={handleActiveModal} // Ensure the correct function is passed
+          handleCardLike={handleCardLike}
+          handleEditProfile={handleEditProfile}
+          handleSignOut={handleSignOut}
         />
       </section>
     </div>

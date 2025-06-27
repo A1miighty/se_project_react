@@ -1,14 +1,20 @@
-.cards__list {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+.main {
+  flex-grow: 1;
 }
 
-.cards__text {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24.8px;
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin: 45px 8px 45px 48px;
+}
+
+.cards__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+  grid-auto-rows: 328px;
+  padding: 0;
+  width: 1360px;
+  min-height: 387px;
+  margin-bottom: 40px;
 }
