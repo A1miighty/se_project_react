@@ -23,7 +23,7 @@ The project is built using **React** and integrates with a custom backend (Expre
 
 ## 🔗 Backend Repository
 
-👉 [WTWR Backend Repository](hhttps://github.com/A1miighty/se_project_express)
+👉 [WTWR Backend Repository](https://github.com/A1miighty/se_project_express)
 
 > Replace the URL above with the actual link to your backend repo.
 
