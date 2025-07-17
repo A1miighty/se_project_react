@@ -333,12 +333,15 @@ function App() {
             onAddItemModalSubmit={handleAddItemModalSubmit} // fix prop name
             isSaving={isSaving}
           />
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            onClose={closeActiveModal}
-            onDeleteItem={handleCardDelete}
-          />
+          {activeModal === "preview" && selectedCard && currentUser && (
+            <ItemModal
+              activeModal={activeModal}
+              card={selectedCard}
+              onClose={closeActiveModal}
+              onDeleteItem={handleCardDelete}
+            />
+          )}
+
           <LoginModalForm
             isOpen={activeModal === "login"}
             activeModal={activeModal}
